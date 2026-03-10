@@ -1,3 +1,7 @@
+"""
+Defines the CardDeck class and its methods.
+"""
+
 import random
 
 CHANCE_CARDS = [

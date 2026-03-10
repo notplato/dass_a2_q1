@@ -1,3 +1,7 @@
+"""
+Defines the board class and its methods.
+"""
+
 from moneypoly.property import Property, PropertyGroup
 from moneypoly.config import (
     JAIL_POSITION,

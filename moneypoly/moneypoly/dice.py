@@ -1,3 +1,7 @@
+"""
+Defines the Dice class and its methods.
+"""
+
 import random
 from moneypoly.config import BOARD_SIZE
 

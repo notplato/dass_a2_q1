@@ -1,3 +1,7 @@
+"""
+Defines the Game class and its methods.
+"""
+
 import os
 
 from moneypoly.config import (

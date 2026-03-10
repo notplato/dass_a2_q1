@@ -1,3 +1,7 @@
+"""
+Defines the Property class and its methods.
+"""
+
 class Property:
     """Represents a single purchasable property tile on the MoneyPoly board."""
 

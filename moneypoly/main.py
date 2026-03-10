@@ -1,3 +1,7 @@
+"""
+Main entry point for the monopoly game.
+"""
+
 from moneypoly.game import Game
 
 

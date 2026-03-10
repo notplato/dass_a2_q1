@@ -1,3 +1,7 @@
+"""
+Defines the Bank class and its methods.
+"""
+
 import math
 from moneypoly.config import BANK_STARTING_FUNDS
 
