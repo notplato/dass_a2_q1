@@ -2,11 +2,13 @@
 Defines the Bank class and its methods.
 """
 
-import math
 from moneypoly.config import BANK_STARTING_FUNDS
 
 
 class Bank:
+    """
+    Defines the methods and properties of the Bank.
+    """
     def __init__(self):
         self._funds = BANK_STARTING_FUNDS
         self._loans_issued = []
