@@ -7,12 +7,14 @@ class Property:
 
     FULL_GROUP_MULTIPLIER = 2
 
-    def __init__(self, name, position, price, base_rent, group=None):
+    def __init__(self, name, position, stats, group=None):
         self.name = name
         self.position = position
-        self.price = price
-        self.base_rent = base_rent
-        self.mortgage_value = price // 2
+        self.stats = {
+            "price": stats.get("price"),
+            "base_rent": stats.get("base_rent"),
+            "mortgage_value": stats.get("price") // 2
+        }
         self.owner = None
         self.is_mortgaged = False
         self.houses = 0
@@ -31,8 +33,8 @@ class Property:
         if self.is_mortgaged:
             return 0
         if self.group is not None and self.group.all_owned_by(self.owner):
-            return self.base_rent * self.FULL_GROUP_MULTIPLIER
-        return self.base_rent
+            return self.stats["base_rent"] * self.FULL_GROUP_MULTIPLIER
+        return self.stats["base_rent"]
 
     def mortgage(self):
         """
@@ -42,7 +44,7 @@ class Property:
         if self.is_mortgaged:
             return 0
         self.is_mortgaged = True
-        return self.mortgage_value
+        return self.stats["mortgage_value"]
 
     def unmortgage(self):
         """
@@ -51,10 +53,9 @@ class Property:
         """
         if not self.is_mortgaged:
             return 0
-        else:
-            cost = int(self.mortgage_value * 1.1)
-            self.is_mortgaged = False
-            return cost
+        cost = int(self.stats["mortgage_value"] * 1.1)
+        self.is_mortgaged = False
+        return cost
 
     def is_available(self):
         """Return True if this property can be purchased (unowned, not mortgaged)."""
@@ -66,6 +67,9 @@ class Property:
 
 
 class PropertyGroup:
+    """
+    Represents a group of Properties.
+    """
     def __init__(self, name, color):
         self.name = name
         self.color = color
