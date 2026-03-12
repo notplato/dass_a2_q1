@@ -57,28 +57,28 @@ class Board:
         """Instantiate every purchasable property and return as a list."""
         g = self.groups
         return [
-            Property("Mediterranean Avenue",   1,  {"price": 60,  "base_rent": 2},  g["brown"]),
-            Property("Baltic Avenue",          3,  {"price": 60,  "base_rent": 4},  g["brown"]),
-            Property("Oriental Avenue",        6,  {"price": 100, "base_rent": 6},  g["light_blue"]),
-            Property("Vermont Avenue",         8,  {"price": 100, "base_rent": 6},  g["light_blue"]),
-            Property("Connecticut Avenue",     9,  {"price": 120, "base_rent": 8},  g["light_blue"]),
-            Property("St. Charles Place",      11, {"price": 140, "base_rent": 10}, g["pink"]),
-            Property("States Avenue",          13, {"price": 140, "base_rent": 10}, g["pink"]),
-            Property("Virginia Avenue",        14, {"price": 160, "base_rent": 12}, g["pink"]),
-            Property("St. James Place",        16, {"price": 180, "base_rent": 14}, g["orange"]),
-            Property("Tennessee Avenue",       18, {"price": 180, "base_rent": 14}, g["orange"]),
-            Property("New York Avenue",        19, {"price": 200, "base_rent": 16}, g["orange"]),
-            Property("Kentucky Avenue",        21, {"price": 220, "base_rent": 18}, g["red"]),
-            Property("Indiana Avenue",         23, {"price": 220, "base_rent": 18}, g["red"]),
-            Property("Illinois Avenue",        24, {"price": 240, "base_rent": 20}, g["red"]),
-            Property("Atlantic Avenue",        26, {"price": 260, "base_rent": 22}, g["yellow"]),
-            Property("Ventnor Avenue",         27, {"price": 260, "base_rent": 22}, g["yellow"]),
-            Property("Marvin Gardens",         29, {"price": 280, "base_rent": 24}, g["yellow"]),
-            Property("Pacific Avenue",         31, {"price": 300, "base_rent": 26}, g["green"]),
-            Property("North Carolina Avenue",  32, {"price": 300, "base_rent": 26}, g["green"]),
-            Property("Pennsylvania Avenue",    34, {"price": 320, "base_rent": 28}, g["green"]),
-            Property("Park Place",             37, {"price": 350, "base_rent": 35}, g["dark_blue"]),
-            Property("Boardwalk",              39, {"price": 400, "base_rent": 50}, g["dark_blue"]),
+            Property("Mediterranean Avenue",  1,  {"price": 60,  "base_rent": 2},  g["brown"]),
+            Property("Baltic Avenue",         3,  {"price": 60,  "base_rent": 4},  g["brown"]),
+            Property("Oriental Avenue",       6,  {"price": 100, "base_rent": 6},  g["light_blue"]),
+            Property("Vermont Avenue",        8,  {"price": 100, "base_rent": 6},  g["light_blue"]),
+            Property("Connecticut Avenue",    9,  {"price": 120, "base_rent": 8},  g["light_blue"]),
+            Property("St. Charles Place",     11, {"price": 140, "base_rent": 10}, g["pink"]),
+            Property("States Avenue",         13, {"price": 140, "base_rent": 10}, g["pink"]),
+            Property("Virginia Avenue",       14, {"price": 160, "base_rent": 12}, g["pink"]),
+            Property("St. James Place",       16, {"price": 180, "base_rent": 14}, g["orange"]),
+            Property("Tennessee Avenue",      18, {"price": 180, "base_rent": 14}, g["orange"]),
+            Property("New York Avenue",       19, {"price": 200, "base_rent": 16}, g["orange"]),
+            Property("Kentucky Avenue",       21, {"price": 220, "base_rent": 18}, g["red"]),
+            Property("Indiana Avenue",        23, {"price": 220, "base_rent": 18}, g["red"]),
+            Property("Illinois Avenue",       24, {"price": 240, "base_rent": 20}, g["red"]),
+            Property("Atlantic Avenue",       26, {"price": 260, "base_rent": 22}, g["yellow"]),
+            Property("Ventnor Avenue",        27, {"price": 260, "base_rent": 22}, g["yellow"]),
+            Property("Marvin Gardens",        29, {"price": 280, "base_rent": 24}, g["yellow"]),
+            Property("Pacific Avenue",        31, {"price": 300, "base_rent": 26}, g["green"]),
+            Property("North Carolina Avenue", 32, {"price": 300, "base_rent": 26}, g["green"]),
+            Property("Pennsylvania Avenue",   34, {"price": 320, "base_rent": 28}, g["green"]),
+            Property("Park Place",            37, {"price": 350, "base_rent": 35}, g["dark_blue"]),
+            Property("Boardwalk",             39, {"price": 400, "base_rent": 50}, g["dark_blue"]),
         ]
 
     def get_property_at(self, position):
@@ -109,7 +109,7 @@ class Board:
         prop = self.get_property_at(position)
         if prop is None:
             return False
-        if prop.is_mortgaged == True:
+        if prop.is_mortgaged is True:
             return False
         return prop.owner is None
 
