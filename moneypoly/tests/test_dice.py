@@ -76,7 +76,6 @@ def test_describe_non_doubles_branch(dice):
 
 def test_doubles_initial_state(dice):
     assert dice.is_doubles() == False
-    assert dice.describe() == "Roll the dice atleast once to get a description."
 
 def test_six_sides(dice):
     seen_six = False

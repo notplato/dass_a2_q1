@@ -31,7 +31,7 @@ class Dice:
 
     def is_doubles(self):
         """Return True if both dice show the same value."""
-        return self.die1 == self.die2
+        return self.die1 == self.die2 and self.die1 != 0
 
     def total(self):
         """Return the sum of both dice."""
