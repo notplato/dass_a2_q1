@@ -23,6 +23,8 @@ class Bank:
         Receive funds into the bank (taxes, fines, auction proceeds, etc.).
         Negative amounts are silently ignored.
         """
+        if amount < 0:
+            return
         self._funds += amount
         self._total_collected += amount
 
@@ -46,9 +48,10 @@ class Bank:
         Issue an emergency loan to `player`, crediting their balance with `amount`.
         The bank's own funds are reduced accordingly.
         """
-        if amount <= 0:
+        if amount <= 0 or amount > self._funds:
             return
         player.add_money(amount)
+        self._funds -= amount
         self._loans_issued.append((player.name, amount))
         print(f"  Bank issued a ${amount} emergency loan to {player.name}.")
 
