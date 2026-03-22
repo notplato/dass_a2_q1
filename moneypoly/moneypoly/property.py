@@ -64,6 +64,18 @@ class Property:
     def __repr__(self):
         owner_name = self.owner.name if self.owner else "unowned"
         return f"Property({self.name!r}, pos={self.position}, owner={owner_name!r})"
+    
+    @property
+    def price(self):
+        return self.stats.get("price")
+    
+    @property
+    def base_rent(self):
+        return self.stats.get("base_rent")
+    
+    @property
+    def mortgage_value(self):
+        return self.stats.get("mortgage_value")
 
 
 class PropertyGroup:
