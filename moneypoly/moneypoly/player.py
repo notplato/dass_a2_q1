@@ -89,3 +89,27 @@ class Player:
 
     def __repr__(self):
         return f"Player({self.name!r}, balance={self.balance}, pos={self.position})"
+    
+    @property
+    def in_jail(self):
+        return self.jail_props["in_jail"]
+
+    @in_jail.setter
+    def in_jail(self, value):
+        self.jail_props["in_jail"] = value
+
+    @property
+    def jail_turns(self):
+        return self.jail_props["jail_turns"]
+
+    @jail_turns.setter
+    def jail_turns(self, value):
+        self.jail_props["jail_turns"] = value
+
+    @property
+    def get_out_of_jail_cards(self):
+        return self.jail_props["get_out_of_jail_cards"]
+
+    @get_out_of_jail_cards.setter
+    def get_out_of_jail_cards(self, value):
+        self.jail_props["get_out_of_jail_cards"] = value

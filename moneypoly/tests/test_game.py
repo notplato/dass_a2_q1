@@ -346,6 +346,11 @@ def test_find_winner(game, alice, bob):
 
 @patch('moneypoly.game.Game.play_turn')
 def test_run_loop_max_turns(mock_play, game):
+    def fake_play_turn():
+        game.turn_number += 1
+        
+    mock_play.side_effect = fake_play_turn
+
     game.turn_number = MAX_TURNS - 1
     game.run()
     mock_play.assert_called_once()

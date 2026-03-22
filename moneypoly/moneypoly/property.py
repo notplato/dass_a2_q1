@@ -67,15 +67,15 @@ class Property:
     
     @property
     def price(self):
-        return self.stats.get("price")
+        return self.stats["price"]
     
     @property
     def base_rent(self):
-        return self.stats.get("base_rent")
+        return self.stats["base_rent"]
     
     @property
     def mortgage_value(self):
-        return self.stats.get("mortgage_value")
+        return self.stats["mortgage_value"]
 
 
 class PropertyGroup:
