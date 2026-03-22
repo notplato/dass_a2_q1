@@ -106,6 +106,9 @@ class Board:
         Return True if the tile at `position` is a property that can be bought.
         Mortgaged properties are not considered purchasable.
         """
+        if self.get_tile_type(position) == "railroad":
+            return True
+
         prop = self.get_property_at(position)
         if prop is None:
             return False
