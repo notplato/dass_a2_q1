@@ -252,8 +252,9 @@ def test_auction_valid_bidding_and_winner_branch(mock_input, game, alice, bob, p
     
     assert alice.balance == STARTING_BALANCE
 
+@patch('moneypoly.game.Game._move_and_resolve') # stops the player from moving after release
 @patch('moneypoly.ui.confirm', return_value=True)
-def test_jail_use_card(mock_confirm, game, alice):
+def test_jail_use_card(mock_confirm, mock_move, game, alice):
     alice.in_jail = True
     alice.jail_turns = 1
     alice.get_out_of_jail_cards = 1
@@ -261,9 +262,11 @@ def test_jail_use_card(mock_confirm, game, alice):
     
     assert alice.get_out_of_jail_cards == 0
     assert alice.in_jail is False
+    mock_move.assert_called_once()
 
+@patch('moneypoly.game.Game._move_and_resolve')
 @patch('moneypoly.ui.confirm', side_effect=[False, True]) # No to card, Yes to fine
-def test_jail_pay_fine(mock_confirm, game, alice):
+def test_jail_pay_fine(mock_confirm, mock_move, game, alice):
     alice.in_jail = True
     alice.get_out_of_jail_cards = 1
     game._handle_jail_turn(alice)
@@ -271,9 +274,11 @@ def test_jail_pay_fine(mock_confirm, game, alice):
     assert alice.in_jail is False
     assert alice.balance == STARTING_BALANCE - JAIL_FINE
     assert alice.get_out_of_jail_cards == 1
+    mock_move.assert_called_once()
 
+@patch('moneypoly.game.Game._move_and_resolve')
 @patch('moneypoly.ui.confirm', return_value=False)
-def test_jail_serve_time(mock_confirm, game, alice):
+def test_jail_serve_time(mock_confirm, mock_move, game, alice):
     """Test branch where player waits."""
     alice.in_jail = True
     alice.jail_turns = 1
@@ -281,9 +286,11 @@ def test_jail_serve_time(mock_confirm, game, alice):
     
     assert alice.in_jail is True
     assert alice.jail_turns == 2
+    mock_move.assert_not_called()
 
+@patch('moneypoly.game.Game._move_and_resolve')
 @patch('moneypoly.ui.confirm', return_value=False)
-def test_jail_mandatory_release(mock_confirm, game, alice):
+def test_jail_mandatory_release(mock_confirm, mock_move, game, alice):
     """Test branch where player hits 3 turns and is forced out."""
     alice.in_jail = True
     alice.jail_turns = 2
@@ -292,6 +299,7 @@ def test_jail_mandatory_release(mock_confirm, game, alice):
     assert alice.in_jail is False
     assert alice.jail_turns == 0
     assert alice.balance == STARTING_BALANCE - JAIL_FINE
+    mock_move.assert_called_once()
 
 def test_apply_card_collect(game, alice):
     card = {"description": "Test", "action": "collect", "value": 50}
